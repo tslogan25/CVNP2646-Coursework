@@ -14,7 +14,7 @@ def load_threat_data(filename):
 
     Returns: Parsed JSON data as dictionary
     """
-    with open(filename, 'r') as f:
+    with open(filename,'r') as f:
         data = json.load(f)
     return data
 
