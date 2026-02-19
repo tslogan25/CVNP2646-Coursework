@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+# create_tar_backup.py
+# Creates a .tar.gz archive of a folder
+
+from pathlib import Path
+import tarfile
+from datetime import datetime
+
+# -------------------------
+# Folder to archive
+# -------------------------
+SOURCE_FOLDER = Path(r"C:\Users\tslog\Python_Course\CVNP2646-Coursework\Week5\Test_Downloads")
+
+# -------------------------
+# Output file
+# -------------------------
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+OUTPUT_FILE = SOURCE_FOLDER.parent / f"files_{timestamp}.tar.gz"
+
+
+def create_tar_gz(source_folder, output_file):
+    """Create a tar.gz archive of a folder."""
+    
+    if not source_folder.exists():
+        print(f"Error: Folder '{source_folder}' not found.")
+        return
+
+    print(f"Creating archive from: {source_folder}")
+    print(f"Saving to: {output_file}")
+
+    try:
+        with tarfile.open(output_file, "w:gz") as tar:
+            # arcname keeps folder name clean inside archive
+            tar.add(source_folder, arcname=source_folder.name)
+
+        print("Archive created successfully ✔")
+
+    except Exception as e:
+        print(f"Error creating archive: {e}")
+
+
+if __name__ == "__main__":
+    create_tar_gz(SOURCE_FOLDER, OUTPUT_FILE)

@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+# create_backup.py
+# Creates a ZIP backup of a folder
+
+from pathlib import Path
+import shutil
+from datetime import datetime
+
+# -------------------------
+# Folder to backup
+# -------------------------
+SOURCE_FOLDER = Path(r"C:\Users\tslog\Python_Course\CVNP2646-Coursework\Week5\Test_Downloads")
+
+# -------------------------
+# Output ZIP name
+# -------------------------
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+ZIP_NAME = f"backup_{timestamp}"
+OUTPUT_PATH = SOURCE_FOLDER.parent / ZIP_NAME
+
+
+def create_backup(source_folder, output_path):
+    """Create a zip archive of the folder."""
+
+    if not source_folder.exists():
+        print(f"Error: Folder '{source_folder}' not found.")
+        return
+
+    print(f"Creating backup of: {source_folder}")
+    print(f"Saving to: {output_path}.zip")
+
+    try:
+        shutil.make_archive(str(output_path), 'zip', str(source_folder))
+        print("Backup created successfully ✔")
+
+    except Exception as e:
+        print(f"Error creating backup: {e}")
+
+
+if __name__ == "__main__":
+    create_backup(SOURCE_FOLDER, OUTPUT_PATH)

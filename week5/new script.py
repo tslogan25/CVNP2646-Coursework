@@ -8,7 +8,7 @@ import shutil
 # -------------------------
 # Hardcoded Directory Path
 # -------------------------
-BASE_DIRECTORY = Path(r"C:\Users\tslog\Python_Course\CVNP2646-Coursework\Week5")
+BASE_DIRECTORY = Path(r"C:\Users\tslog\Python_Course\CVNP2646-Coursework\Week5\Test_Downloads")
 
 # -------------------------
 # Category Mapping

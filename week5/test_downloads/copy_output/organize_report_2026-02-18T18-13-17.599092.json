@@ -1,0 +1,17 @@
+{
+    "timestamp": "2026-02-18T18:13:17.599092",
+    "source_directory": "C:\\Users\\tslog\\Python_Course\\CVNP2646-Coursework\\Week5\\test_downloads",
+    "output_directory": "C:\\Users\\tslog\\Python_Course\\CVNP2646-Coursework\\Week5\\test_downloads\\copy_output",
+    "total_files": 18,
+    "moved_files": 18,
+    "categories": {
+        "archives": 3,
+        "images": 3,
+        "executables": 3,
+        "other": 4,
+        "documents": 3,
+        "audio": 1,
+        "videos": 1
+    },
+    "errors": []
+}
