@@ -1,41 +1,41 @@
 ======================================================================
 BACKUP PLAN: Security Logs Daily Backup
-Generated:   2026-03-02 18:24:20
+Generated:   2026-03-05 17:50:38
 MODE:        DRY-RUN (No files will be copied)
 ======================================================================
 
 SUMMARY
 ----------------------------------------------------------------------
 Total Sources:                2
-Total Files:                 28
-Total Size:            1,350.52 MB
+Total Files:                 15
+Total Size:              603.96 MB
 
 DETAILS BY SOURCE
 ----------------------------------------------------------------------
 
 Source Path: /var/log/firewall
-Files:                  14
-Total Size:         615.52 MB
+Files:                   6
+Total Size:         215.16 MB
 
   Sample Files:
-   - firewall_2026-03-02.log                     85.62 MB
-   - firewall_2026-03-02.log                     41.59 MB
-   - firewall_2026-03-02.log                     26.40 MB
-   - firewall_2026-03-02.log                     19.54 MB
-   - firewall_2026-03-02.log                     50.85 MB
-   ... and 9 more files
+   - report_99.txt                               49.00 MB
+   - report_2.txt                                26.79 MB
+   - report_2.txt                                57.29 MB
+   - report_32.txt                               29.71 MB
+   - report_7.txt                                 7.89 MB
+   ... and 1 more files
 
 Source Path: /var/log/suricata
-Files:                  14
-Total Size:         735.00 MB
+Files:                   9
+Total Size:         388.80 MB
 
   Sample Files:
-   - file_414.txt                                 2.22 MB
-   - file_205.json                               24.15 MB
-   - file_342.txt                                98.66 MB
-   - file_860.json                               99.28 MB
-   - file_114.txt                                87.68 MB
-   ... and 9 more files
+   - file_555.csv                                28.91 MB
+   - file_223.log                                43.96 MB
+   - file_195.json                               33.78 MB
+   - file_249.json                               97.95 MB
+   - file_212.csv                                56.30 MB
+   ... and 4 more files
 
 ======================================================================
 DRY-RUN COMPLETE: No files were copied.

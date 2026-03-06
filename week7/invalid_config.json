@@ -1,0 +1,7 @@
+{
+    "status": "INVALID CONFIG",
+    "timestamp": "2026-03-05 17:29:21",
+    "errors": [
+        "Configuration file missing or invalid JSON"
+    ]
+}
