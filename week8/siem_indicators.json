@@ -1,0 +1,76 @@
+{
+  "generated_at": "2026-03-16T18:13:13.326866",
+  "event_count": 4,
+  "statistics": {
+    "total_loaded": 18,
+    "valid_count": 16,
+    "unique_count": 14,
+    "filtered_count": 4,
+    "duplicates_removed": 4,
+    "type_distribution": {
+      "ip": 2,
+      "domain": 2
+    },
+    "severity_distribution": {
+      "critical": 2,
+      "high": 2
+    },
+    "source_contribution": {
+      "VendorA": 6,
+      "VendorB": 5,
+      "VendorC": 5
+    }
+  },
+  "indicators": [
+    {
+      "ioc_id": "VendorA-203.0.113.50",
+      "ioc_type": "ip",
+      "ioc_value": "203.0.113.50",
+      "risk_score": 90,
+      "severity": "critical",
+      "vendors": [
+        "VendorA",
+        "VendorB"
+      ],
+      "first_seen": null,
+      "recommended_action": "alert_block_escalate"
+    },
+    {
+      "ioc_id": "VendorA-login-security-check.com",
+      "ioc_type": "domain",
+      "ioc_value": "login-security-check.com",
+      "risk_score": 90,
+      "severity": "high",
+      "vendors": [
+        "VendorA",
+        "VendorC"
+      ],
+      "first_seen": null,
+      "recommended_action": "alert_and_enrich"
+    },
+    {
+      "ioc_id": "VendorB-secure-auth-reset.org",
+      "ioc_type": "domain",
+      "ioc_value": "secure-auth-reset.org",
+      "risk_score": 90,
+      "severity": "high",
+      "vendors": [
+        "VendorB"
+      ],
+      "first_seen": null,
+      "recommended_action": "alert_and_enrich"
+    },
+    {
+      "ioc_id": "VendorC-198.51.100.120",
+      "ioc_type": "ip",
+      "ioc_value": "198.51.100.120",
+      "risk_score": 90,
+      "severity": "critical",
+      "vendors": [
+        "VendorC"
+      ],
+      "first_seen": null,
+      "recommended_action": "alert_block_escalate"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-03-16T18:13:13.326846",
+  "total_entries": 4,
+  "statistics": {
+    "total_loaded": 18,
+    "valid_count": 16,
+    "unique_count": 14,
+    "filtered_count": 4,
+    "duplicates_removed": 4,
+    "type_distribution": {
+      "ip": 2,
+      "domain": 2
+    },
+    "severity_distribution": {
+      "critical": 2,
+      "high": 2
+    },
+    "source_contribution": {
+      "VendorA": 6,
+      "VendorB": 5,
+      "VendorC": 5
+    }
+  },
+  "blocklist": [
+    {
+      "address": "203.0.113.50",
+      "action": "block",
+      "priority": "high",
+      "reason": "Threat level: critical, Confidence: 90%",
+      "sources": [
+        "VendorA",
+        "VendorB"
+      ]
+    },
+    {
+      "address": "login-security-check.com",
+      "action": "block",
+      "priority": "medium",
+      "reason": "Threat level: high, Confidence: 90%",
+      "sources": [
+        "VendorA",
+        "VendorC"
+      ]
+    },
+    {
+      "address": "secure-auth-reset.org",
+      "action": "block",
+      "priority": "medium",
+      "reason": "Threat level: high, Confidence: 90%",
+      "sources": [
+        "VendorB"
+      ]
+    },
+    {
+      "address": "198.51.100.120",
+      "action": "block",
+      "priority": "high",
+      "reason": "Threat level: critical, Confidence: 90%",
+      "sources": [
+        "VendorC"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+======================================================================
+THREAT FEED AGGREGATOR REPORT
+======================================================================
+Generated: 2026-03-16T18:13:13.326869
+
+SUMMARY
+----------------------------------------------------------------------
+Total indicators loaded:              18
+Valid indicators:                     16
+Validation errors:                     2
+Unique after deduplication:           14
+Duplicates removed:                    2
+Indicators after filtering:            4
+
+STATISTICS
+----------------------------------------------------------------------
+Total loaded:                         18
+Valid count:                          16
+Unique count:                         14
+Filtered count:                        4
+Duplicates removed:                    4
+
+Type Distribution
+  ip                       2
+  domain                   2
+
+Severity Distribution
+  critical                 2
+  high                     2
+
+Source Contribution
+  VendorA                  6
+  VendorB                  5
+  VendorC                  5
+
+VALIDATION ERRORS
+----------------------------------------------------------------------
+- Indicator 11: missing required field(s): confidence
+- Indicator 16: invalid type 'email'
+
+FILTERED HIGH-PRIORITY INDICATORS
+----------------------------------------------------------------------
+1. Type:       ip
+   Value:      203.0.113.50
+   Confidence: 90%
+   Threat:     critical
+   Sources:    VendorA, VendorB
+
+2. Type:       domain
+   Value:      login-security-check.com
+   Confidence: 90%
+   Threat:     high
+   Sources:    VendorA, VendorC
+
+3. Type:       domain
+   Value:      secure-auth-reset.org
+   Confidence: 90%
+   Threat:     high
+   Sources:    VendorB
+
+4. Type:       ip
+   Value:      198.51.100.120
+   Confidence: 90%
+   Threat:     critical
+   Sources:    VendorC
