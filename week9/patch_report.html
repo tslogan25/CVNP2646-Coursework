@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patch Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f8f9fa;
+            color: #222;
+        }
+        h1, h2 {
+            color: #1f4e79;
+        }
+        .summary {
+            background: white;
+            padding: 15px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            border-radius: 6px;
+        }
+        .summary p {
+            margin: 6px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #1f4e79;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weekly Patch Compliance Report</h1>
+    <p><strong>Generated:</strong> 2026-03-24 16:43:06</p>
+
+    <div class="summary">
+        <h2>Executive Summary</h2>
+        <p><strong>Total Systems:</strong> 20</p>
+        <p><strong>High-Risk Systems:</strong> 9 (45.0%)</p>
+        <p><strong>Critical Priority Systems:</strong> 2</p>
+        <p><strong>Immediate Action Required:</strong> 0 systems >90 days unpatched</p>
+    </div>
+
+    <div class="summary">
+        <h2>Risk Distribution</h2>
+        <p><strong>Critical:</strong> 2</p>
+        <p><strong>High:</strong> 7</p>
+        <p><strong>Medium:</strong> 10</p>
+        <p><strong>Low:</strong> 1</p>
+    </div>
+
+    <div class="summary">
+        <h2>Compliance Notes</h2>
+        <p><strong>PCI-DSS:</strong> 3 systems in PCI scope require immediate attention</p>
+    </div>
+
+    <h2>High-Risk Hosts</h2>
+    <table>
+        <tr>
+            <th>Hostname</th>
+            <th>Risk Score</th>
+            <th>Risk Level</th>
+            <th>Days Since Patch</th>
+            <th>Criticality</th>
+            <th>Environment</th>
+            <th>Tags</th>
+        </tr>
+        
+        <tr>
+            <td>FIN-WKS-001</td>
+            <td>75</td>
+            <td>Critical</td>
+            <td>38</td>
+            <td>High</td>
+            <td>Production</td>
+            <td>pci-scope, internet-facing</td>
+        </tr>
+        
+        <tr>
+            <td>EXEC-WKS-002</td>
+            <td>75</td>
+            <td>Critical</td>
+            <td>43</td>
+            <td>Critical</td>
+            <td>Production</td>
+            <td>vip, pci-scope</td>
+        </tr>
+        
+        <tr>
+            <td>IT-ADM-001</td>
+            <td>65</td>
+            <td>High</td>
+            <td>31</td>
+            <td>Critical</td>
+            <td>Production</td>
+            <td>privileged-access, domain-joined</td>
+        </tr>
+        
+        <tr>
+            <td>IT-SEC-002</td>
+            <td>65</td>
+            <td>High</td>
+            <td>35</td>
+            <td>Critical</td>
+            <td>Production</td>
+            <td>siem-forwarder, linux</td>
+        </tr>
+        
+        <tr>
+            <td>FIN-WKS-002</td>
+            <td>60</td>
+            <td>High</td>
+            <td>54</td>
+            <td>High</td>
+            <td>Production</td>
+            <td>pci-scope, encrypted</td>
+        </tr>
+        
+        <tr>
+            <td>IT-SEC-001</td>
+            <td>55</td>
+            <td>High</td>
+            <td>30</td>
+            <td>Critical</td>
+            <td>Production</td>
+            <td>privileged-access, edr-managed</td>
+        </tr>
+        
+        <tr>
+            <td>EXEC-WKS-001</td>
+            <td>55</td>
+            <td>High</td>
+            <td>29</td>
+            <td>Critical</td>
+            <td>Production</td>
+            <td>vip, encrypted</td>
+        </tr>
+        
+        <tr>
+            <td>ENG-WKS-001</td>
+            <td>50</td>
+            <td>High</td>
+            <td>42</td>
+            <td>High</td>
+            <td>Production</td>
+            <td>developer-tools, source-code-access</td>
+        </tr>
+        
+        <tr>
+            <td>ENG-WKS-002</td>
+            <td>50</td>
+            <td>High</td>
+            <td>36</td>
+            <td>High</td>
+            <td>Production</td>
+            <td>linux, container-host</td>
+        </tr>
+        
+    </table>
+</body>
+</html>
