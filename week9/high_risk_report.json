@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-03-24T16:43:06.956550",
+  "report_date": "2026-03-25T11:13:52.365832",
   "report_type": "High Risk Host Assessment",
   "total_hosts": 20,
   "total_high_risk": 9,
@@ -14,7 +14,7 @@
       "hostname": "FIN-WKS-001",
       "risk_score": 75,
       "risk_level": "critical",
-      "days_since_patch": 38,
+      "days_since_patch": 39,
       "criticality": "high",
       "environment": "production",
       "tags": [
@@ -26,7 +26,7 @@
       "hostname": "EXEC-WKS-002",
       "risk_score": 75,
       "risk_level": "critical",
-      "days_since_patch": 43,
+      "days_since_patch": 44,
       "criticality": "critical",
       "environment": "production",
       "tags": [
@@ -38,7 +38,7 @@
       "hostname": "IT-ADM-001",
       "risk_score": 65,
       "risk_level": "high",
-      "days_since_patch": 31,
+      "days_since_patch": 32,
       "criticality": "critical",
       "environment": "production",
       "tags": [
@@ -47,10 +47,22 @@
       ]
     },
     {
+      "hostname": "IT-SEC-001",
+      "risk_score": 65,
+      "risk_level": "high",
+      "days_since_patch": 31,
+      "criticality": "critical",
+      "environment": "production",
+      "tags": [
+        "privileged-access",
+        "edr-managed"
+      ]
+    },
+    {
       "hostname": "IT-SEC-002",
       "risk_score": 65,
       "risk_level": "high",
-      "days_since_patch": 35,
+      "days_since_patch": 36,
       "criticality": "critical",
       "environment": "production",
       "tags": [
@@ -62,7 +74,7 @@
       "hostname": "FIN-WKS-002",
       "risk_score": 60,
       "risk_level": "high",
-      "days_since_patch": 54,
+      "days_since_patch": 55,
       "criticality": "high",
       "environment": "production",
       "tags": [
@@ -71,22 +83,10 @@
       ]
     },
     {
-      "hostname": "IT-SEC-001",
-      "risk_score": 55,
-      "risk_level": "high",
-      "days_since_patch": 30,
-      "criticality": "critical",
-      "environment": "production",
-      "tags": [
-        "privileged-access",
-        "edr-managed"
-      ]
-    },
-    {
       "hostname": "EXEC-WKS-001",
       "risk_score": 55,
       "risk_level": "high",
-      "days_since_patch": 29,
+      "days_since_patch": 30,
       "criticality": "critical",
       "environment": "production",
       "tags": [
@@ -98,7 +98,7 @@
       "hostname": "ENG-WKS-001",
       "risk_score": 50,
       "risk_level": "high",
-      "days_since_patch": 42,
+      "days_since_patch": 43,
       "criticality": "high",
       "environment": "production",
       "tags": [
@@ -110,7 +110,7 @@
       "hostname": "ENG-WKS-002",
       "risk_score": 50,
       "risk_level": "high",
-      "days_since_patch": 36,
+      "days_since_patch": 37,
       "criticality": "high",
       "environment": "production",
       "tags": [

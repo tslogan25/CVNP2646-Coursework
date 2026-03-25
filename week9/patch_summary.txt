@@ -1,7 +1,7 @@
 ============================================================
      WEEKLY PATCH COMPLIANCE SUMMARY REPORT
 ============================================================
-Generated: 2026-03-24 16:43:06
+Generated: 2026-03-25 11:13:52
 
 EXECUTIVE SUMMARY
 ------------------------------------------------------------
@@ -20,19 +20,19 @@ Low (<25 points):              1 systems
 TOP 5 HIGHEST RISK SYSTEMS
 ------------------------------------------------------------
 1. FIN-WKS-001 (Score: 75, Critical)
-   Last Patched: 38 days ago | Production | Tags: pci-scope, internet-facing
+   Last Patched: 39 days ago | Production | Tags: pci-scope, internet-facing
 
 2. EXEC-WKS-002 (Score: 75, Critical)
-   Last Patched: 43 days ago | Production | Tags: vip, pci-scope
+   Last Patched: 44 days ago | Production | Tags: vip, pci-scope
 
 3. IT-ADM-001 (Score: 65, High)
-   Last Patched: 31 days ago | Production | Tags: privileged-access, domain-joined
+   Last Patched: 32 days ago | Production | Tags: privileged-access, domain-joined
 
-4. IT-SEC-002 (Score: 65, High)
-   Last Patched: 35 days ago | Production | Tags: siem-forwarder, linux
+4. IT-SEC-001 (Score: 65, High)
+   Last Patched: 31 days ago | Production | Tags: privileged-access, edr-managed
 
-5. FIN-WKS-002 (Score: 60, High)
-   Last Patched: 54 days ago | Production | Tags: pci-scope, encrypted
+5. IT-SEC-002 (Score: 65, High)
+   Last Patched: 36 days ago | Production | Tags: siem-forwarder, linux
 
 RECOMMENDED ACTIONS
 ------------------------------------------------------------

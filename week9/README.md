@@ -71,3 +71,8 @@ The script includes the following key functions:
 ## 5. Sample Output
 
 Example results from running the tool:
+
+
+I used chat gpt to help me with this script. Some of the key prompts I used were: creating ga function to load json host inventory and validate struture. Calculate days since the patch using datetime in python, built a multi-factor risk scoring function based on criticality, patch age and tags, created filters for os, environment, and criticality, sorted and returned high-risk hosts above a threshold, generated json and text reports from processed data.
+Suggestions that I accepted and rejected. I focused on keeping the colde simple, reliable and aligning with the requirements.
+AI acted as a coding assistant and helped speed up development and improve code quiality but I still made the struction, logic and the final decisions.
