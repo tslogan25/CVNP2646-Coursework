@@ -1,34 +1,29 @@
-Network Traffic Monitor
+# Network Traffic Monitor
 
-Professional network traffic analyzer with port scan and SYN flood detection.
+Professional network traffic analyzer with port scan, SYN flood, and AI-enhanced behavioral detection.
 
-Features
-Modular design with separation of I/O, parsing, and logic
-Comprehensive logging (file + console with configurable levels)
-Full test coverage using unittest (23 tests)
-CLI support with argparse and validation
-Outputs structured results to results.json
-Generates human-readable report in report.txt
-Includes AI-enhanced behavioral detection rules
-Installation
+## Features
+
+- Modular design with clear separation of I/O, parsing, and analysis logic  
+- Comprehensive logging with file and console handlers  
+- Structured JSON output in results.json  
+- Human-readable text output in report.txt  
+- Full automated test coverage using unittest  
+- CLI support with argparse, help text, validation, and exit codes  
+- AI-enhanced behavioral rules for suspicious ports and high traffic volume  
+
+## Installation
 
 cd Week12
 
-Usage
+## Usage
 
-Basic usage:
 python network_monitor.py
-
-With input file:
 python network_monitor.py traffic_sample.log
-
-With custom thresholds:
-python network_monitor.py --port-scan-threshold 50 --syn-flood-threshold 200
-
-Help:
+python network_monitor.py --port-scan-threshold 50 --syn-flood-threshold 200 --high-traffic-threshold 75
 python network_monitor.py --help
 
-Project Structure
+## Project Structure
 
 Week12/
 ├── network_monitor.py
@@ -39,124 +34,141 @@ Week12/
 ├── report.txt
 └── README.md
 
-Output
-Console Output
+## Output
+
+Console Output:
 
 Analysis complete
 Total packets: 147
 Port scans detected: 1
-
-10.0.1.99
+  - 10.0.1.99
 SYN floods detected: 1
-172.16.0.77
-Suspicious port activity detected: X
-High traffic sources detected: X
-results.json
+  - 172.16.0.77
+Suspicious port activity detected: 1
+  - 10.0.1.99
+High traffic sources detected: 1
+  - 172.16.0.77
+
+results.json:
 
 {
-"total_packets": 147,
-"port_scans": ["10.0.1.99"],
-"syn_floods": ["172.16.0.77"],
-"suspicious_ports": ["10.0.1.99"],
-"high_traffic": ["172.16.0.77"]
+  "total_packets": 147,
+  "port_scans": ["10.0.1.99"],
+  "syn_floods": ["172.16.0.77"],
+  "suspicious_ports": ["10.0.1.99"],
+  "high_traffic": ["172.16.0.77"]
 }
 
-report.txt
+report.txt:
 
-The program generates a human-readable report that includes:
+The program generates a human-readable report containing:
+- total packets analyzed  
+- detected port scans  
+- detected SYN floods  
+- suspicious port activity  
+- high traffic sources  
+- analysis summary  
 
-Total packets analyzed
-Port scans detected
-SYN floods detected
-Suspicious port activity
-High traffic sources
-Summary of findings
-Logging
+## Logging
 
-Logs are written to:
-Week12/network_monitor.log
+Logs are written to Week12/network_monitor.log
 
-Log levels:
+Log levels used:
+- INFO for program flow  
+- WARNING for detected threats  
+- ERROR for malformed data  
 
-INFO → program flow
-WARNING → detected threats
-ERROR → malformed data
-AI-Enhanced Rules
+## AI-Enhanced Rules
 
-In addition to standard detection rules, the system applies AI-enhanced behavioral analysis:
+In addition to signature-based rules, the system applies two AI-enhanced behavioral rules:
 
-Suspicious Port Detection
-Flags source IPs targeting high-risk ports (22, 23, 3389), commonly associated with remote access or unauthorized activity
-High Traffic Volume Detection
-Flags IPs generating unusually high packet counts, indicating automation, scanning, or flooding behavior
+Suspicious Port Detection  
+Flags source IPs targeting high-risk ports such as 22, 23, and 3389, which are commonly associated with remote access and unauthorized activity.
 
-These rules improve detection by identifying patterns instead of relying only on fixed attack signatures.
+High Traffic Volume Detection  
+Flags source IPs generating unusually high packet volume, indicating automated behavior, scanning, or flood activity.
 
-Refactoring Journey
-Problems with Original Code
-Global variables made testing difficult
-Magic numbers (25, 100) with no explanation
-Mixed concerns (I/O, parsing, logic combined)
-No error handling
-Print statements instead of logging
-No tests
-Refactoring Applied
-Introduced NetworkConfig class for configuration
-Created pure functions for parsing and analysis
-Separated I/O from logic (load_traffic_log vs analyze_traffic)
-Implemented logging with file and console handlers
-Added full test coverage (23 tests)
-Built CLI using argparse with validation
-Biggest Challenge
+## Analysis Approach
 
-Separating I/O from logic was the most difficult part. The original code combined reading, parsing, and analysis, requiring careful restructuring into independent, testable functions.
+The system uses a layered detection strategy combining:
+- signature-based detection (port scans and SYN floods)  
+- behavioral analysis (high traffic volume)  
+- risk-based detection (targeting sensitive ports)  
 
-Testing
+This approach improves detection accuracy and demonstrates how rule-based systems can be extended toward AI-style pattern recognition.
+
+## Refactoring Journey
+
+Problems with Original Code:
+- Global variables made testing difficult  
+- Magic numbers had no explanation  
+- Mixed concerns (I/O, parsing, logic combined)  
+- No error handling  
+- Print statements instead of logging  
+- No tests  
+
+Refactoring Applied:
+- Introduced NetworkConfig class  
+- Created pure functions  
+- Separated I/O from logic  
+- Implemented structured logging  
+- Added JSON and text report output  
+- Built CLI with argparse  
+- Added full test coverage  
+
+Biggest Challenge:
+Separating I/O from logic required restructuring the program into independent, testable functions.
+
+## Testing
 
 Run tests:
+
 python test_network_monitor.py
 
-Output:
-Ran 23 tests in 0.006s
-OK
+Expected result:
 
-Text Report
+Ran 25 tests  
 
-The program generates a report.txt file summarizing:
+OK  
 
-Total packets analyzed
-Detected port scans
-Detected SYN floods
-Suspicious port activity
-High traffic sources
-Analysis summary
+## CLI Design
 
-This provides a clear, human-readable explanation of the results.
+- Supports input file argument  
+- Supports custom thresholds  
+- Provides help menu  
+- Validates input  
+- Uses proper exit codes (0, 1, 2)  
 
-AI-Assisted Development
-Tools Used
-GitHub Copilot for code suggestions
-ChatGPT for refactoring and debugging
-Claude for test generation
-What Worked Well
-Generated initial test structure
-Suggested function organization
-Helped with boilerplate code
-What I Had to Fix
-Replaced global logger with parameterized logger
-Corrected incorrect data types in tests
-Added missing boundary tests (threshold edge cases)
-Lesson Learned
+## AI-Assisted Development
 
-AI is useful for structure and speed, but always requires review and testing. Several issues were identified and fixed through testing.
+Tools Used:
+- GitHub Copilot  
+- ChatGPT  
+- Claude  
 
-AI Best Practices
-Be specific with prompts
-Iterate on responses
-Ask for explanations
-Request alternatives
-Always test AI-generated code
-Learn from patterns instead of copying
-License
+What Worked Well:
+- Generated structure and boilerplate  
+- Helped design test cases  
+- Improved organization  
+
+What I Had to Fix:
+- Removed global logger usage  
+- Fixed incorrect data types  
+- Added missing edge case tests  
+- Improved parsing and validation  
+- Added AI-enhanced detection rules  
+
+Lesson Learned:
+AI is helpful but requires validation, testing, and manual refinement.
+
+## AI Best Practices
+
+- Be specific with prompts  
+- Iterate on responses  
+- Ask for explanations  
+- Test all generated code  
+- Review everything before using  
+
+## License
 
 MIT

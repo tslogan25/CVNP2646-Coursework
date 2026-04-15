@@ -147,11 +147,7 @@ def detect_suspicious_ports(
     packets: list[dict[str, Any]],
     suspicious_ports: tuple[int, ...],
 ) -> list[str]:
-    """
-    AI-enhanced rule 1:
-    Flag source IPs that target high-risk ports commonly associated with
-    remote access or weak administrative exposure.
-    """
+    """Flag IPs targeting high-risk ports."""
     flagged_ips = {
         packet["src_ip"]
         for packet in packets
@@ -164,11 +160,7 @@ def detect_high_traffic(
     packets: list[dict[str, Any]],
     threshold: int,
 ) -> list[str]:
-    """
-    AI-enhanced rule 2:
-    Flag source IPs generating unusually high packet volume, which can indicate
-    automation, scanning, flooding, or suspicious burst behavior.
-    """
+    """Flag IPs generating unusually high packet volume."""
     counts = Counter(packet["src_ip"] for packet in packets)
     return sorted([ip for ip, count in counts.items() if count > threshold])
 
@@ -206,11 +198,15 @@ def analyze_traffic(
     high_traffic = detect_high_traffic(packets, config.high_traffic_threshold)
 
     for ip in suspicious_ports:
-        logger.warning("Suspicious port activity detected from %s", ip)
+        logger.warning(
+            "Suspicious port activity detected from %s (ports: %s)",
+            ip,
+            config.suspicious_ports,
+        )
 
     for ip in high_traffic:
         logger.warning(
-            "High traffic volume detected from %s (threshold: %d)",
+            "High traffic volume detected from %s (packet count exceeds threshold: %d)",
             ip,
             config.high_traffic_threshold,
         )
@@ -304,7 +300,7 @@ def generate_text_report(results: dict[str, Any]) -> str:
 def create_parser() -> argparse.ArgumentParser:
     """Create and configure the command-line parser."""
     parser = argparse.ArgumentParser(
-        description="Network Traffic Monitor - detect suspicious traffic patterns"
+        description="Network Traffic Monitor - detect suspicious traffic patterns with AI-enhanced rules"
     )
     parser.add_argument(
         "input_file",

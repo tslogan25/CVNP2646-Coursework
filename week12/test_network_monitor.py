@@ -6,7 +6,9 @@ from pathlib import Path
 from network_monitor import (
     NetworkConfig,
     analyze_traffic,
+    detect_high_traffic,
     detect_port_scan,
+    detect_suspicious_ports,
     detect_syn_flood,
     is_header_line,
     is_syn_packet,
@@ -20,6 +22,7 @@ class TestNetworkMonitor(unittest.TestCase):
         self.sample_config = NetworkConfig(
             port_scan_threshold=25,
             syn_flood_threshold=100,
+            high_traffic_threshold=50,
         )
 
         self.sample_logger = logging.getLogger("test_network_monitor")
@@ -270,12 +273,54 @@ class TestNetworkMonitor(unittest.TestCase):
         )
         self.assertFalse(result)
 
+    def test_detect_suspicious_ports(self):
+        packets = [
+            {
+                "src_ip": "1.1.1.1",
+                "dst_ip": "2.2.2.2",
+                "src_port": 1234,
+                "dst_port": 22,
+                "protocol": "TCP",
+                "flags": "SYN",
+            },
+            {
+                "src_ip": "3.3.3.3",
+                "dst_ip": "2.2.2.2",
+                "src_port": 1235,
+                "dst_port": 80,
+                "protocol": "TCP",
+                "flags": "SYN",
+            },
+        ]
+
+        result = detect_suspicious_ports(packets, (22, 23, 3389))
+        self.assertIn("1.1.1.1", result)
+        self.assertNotIn("3.3.3.3", result)
+
+    def test_detect_high_traffic(self):
+        packets = [
+            {
+                "src_ip": "1.1.1.1",
+                "dst_ip": "2.2.2.2",
+                "src_port": 1000 + i,
+                "dst_port": 80,
+                "protocol": "TCP",
+                "flags": "SYN",
+            }
+            for i in range(60)
+        ]
+
+        result = detect_high_traffic(packets, threshold=50)
+        self.assertIn("1.1.1.1", result)
+
     def test_analyze_traffic_empty(self):
         results = analyze_traffic([], self.sample_config, self.sample_logger)
 
         self.assertEqual(results["total_packets"], 0)
         self.assertEqual(results["port_scans"], [])
         self.assertEqual(results["syn_floods"], [])
+        self.assertEqual(results["suspicious_ports"], [])
+        self.assertEqual(results["high_traffic"], [])
 
     def test_analyze_traffic_detects_both_threats(self):
         port_scan_packets = [
@@ -342,6 +387,8 @@ class TestNetworkMonitor(unittest.TestCase):
         self.assertEqual(results["total_packets"], 3)
         self.assertEqual(results["port_scans"], [])
         self.assertEqual(results["syn_floods"], [])
+        self.assertEqual(results["suspicious_ports"], [])
+        self.assertEqual(results["high_traffic"], [])
 
     def test_load_traffic_log_and_generate_results_json(self):
         script_dir = Path(__file__).resolve().parent
@@ -357,6 +404,8 @@ class TestNetworkMonitor(unittest.TestCase):
         self.assertGreater(results["total_packets"], 0)
         self.assertIsInstance(results["port_scans"], list)
         self.assertIsInstance(results["syn_floods"], list)
+        self.assertIsInstance(results["suspicious_ports"], list)
+        self.assertIsInstance(results["high_traffic"], list)
         self.assertTrue(results_path.exists())
 
 
