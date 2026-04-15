@@ -5,5 +5,11 @@
     ],
     "syn_floods": [
         "172.16.0.77"
+    ],
+    "suspicious_ports": [
+        "10.0.1.99"
+    ],
+    "high_traffic": [
+        "172.16.0.77"
     ]
 }

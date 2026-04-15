@@ -1,11 +1,28 @@
-2026-04-15 16:07:39 - network_monitor - INFO - Using input file: traffic_sample.log
-2026-04-15 16:07:39 - network_monitor - DEBUG - Skipping comment line at 1
-2026-04-15 16:07:39 - network_monitor - DEBUG - Skipping comment line at 2
-2026-04-15 16:07:39 - network_monitor - ERROR - Skipping malformed line 148: invalid literal for int() with base 10: 'not_a_port' | Content: 192.168.99.1,10.0.0.1,not_a_port,80,TCP,SYN
-2026-04-15 16:07:39 - network_monitor - ERROR - Skipping malformed line 151: Expected 6 fields, got 5 | Content: 192.168.1.20,10.0.0.1,48200,53,UDP
-2026-04-15 16:07:39 - network_monitor - INFO - Loaded 147 valid packets from traffic_sample.log
-2026-04-15 16:07:39 - network_monitor - INFO - Starting analysis of 147 packets
-2026-04-15 16:07:39 - network_monitor - WARNING - Port scan detected from 10.0.1.99 (threshold: 25)
-2026-04-15 16:07:39 - network_monitor - WARNING - SYN flood detected from 172.16.0.77 (threshold: 100)
-2026-04-15 16:07:39 - network_monitor - INFO - Analysis complete. Port scans: 1, SYN floods: 1
-2026-04-15 16:07:39 - network_monitor - INFO - Results saved to results.json
+2026-04-15 16:18:47 - network_monitor - INFO - Using input file: traffic_sample.log
+2026-04-15 16:18:47 - network_monitor - DEBUG - Skipping comment line at 1
+2026-04-15 16:18:47 - network_monitor - DEBUG - Skipping comment line at 2
+2026-04-15 16:18:47 - network_monitor - ERROR - Skipping malformed line 148: invalid literal for int() with base 10: 'not_a_port' | Content: 192.168.99.1,10.0.0.1,not_a_port,80,TCP,SYN
+2026-04-15 16:18:47 - network_monitor - ERROR - Skipping malformed line 151: Expected 6 fields, got 5 | Content: 192.168.1.20,10.0.0.1,48200,53,UDP
+2026-04-15 16:18:47 - network_monitor - INFO - Loaded 147 valid packets from traffic_sample.log
+2026-04-15 16:18:47 - network_monitor - INFO - Starting analysis of 147 packets
+2026-04-15 16:18:47 - network_monitor - WARNING - Port scan detected from 10.0.1.99 (threshold: 25)
+2026-04-15 16:18:47 - network_monitor - WARNING - SYN flood detected from 172.16.0.77 (threshold: 100)
+2026-04-15 16:18:47 - network_monitor - WARNING - Suspicious port activity detected from 10.0.1.99
+2026-04-15 16:18:47 - network_monitor - WARNING - High traffic volume detected from 172.16.0.77 (threshold: 50)
+2026-04-15 16:18:47 - network_monitor - INFO - Analysis complete. Port scans: 1, SYN floods: 1, suspicious ports: 1, high traffic: 1
+2026-04-15 16:18:47 - network_monitor - INFO - Results saved to results.json
+2026-04-15 16:18:47 - network_monitor - INFO - Text report saved to report.txt
+2026-04-15 16:21:41 - network_monitor - INFO - Using input file: traffic_sample.log
+2026-04-15 16:21:41 - network_monitor - DEBUG - Skipping comment line at 1
+2026-04-15 16:21:41 - network_monitor - DEBUG - Skipping comment line at 2
+2026-04-15 16:21:41 - network_monitor - ERROR - Skipping malformed line 148: invalid literal for int() with base 10: 'not_a_port' | Content: 192.168.99.1,10.0.0.1,not_a_port,80,TCP,SYN
+2026-04-15 16:21:41 - network_monitor - ERROR - Skipping malformed line 151: Expected 6 fields, got 5 | Content: 192.168.1.20,10.0.0.1,48200,53,UDP
+2026-04-15 16:21:41 - network_monitor - INFO - Loaded 147 valid packets from traffic_sample.log
+2026-04-15 16:21:41 - network_monitor - INFO - Starting analysis of 147 packets
+2026-04-15 16:21:41 - network_monitor - WARNING - Port scan detected from 10.0.1.99 (threshold: 25)
+2026-04-15 16:21:41 - network_monitor - WARNING - SYN flood detected from 172.16.0.77 (threshold: 100)
+2026-04-15 16:21:41 - network_monitor - WARNING - Suspicious port activity detected from 10.0.1.99
+2026-04-15 16:21:41 - network_monitor - WARNING - High traffic volume detected from 172.16.0.77 (threshold: 50)
+2026-04-15 16:21:41 - network_monitor - INFO - Analysis complete. Port scans: 1, SYN floods: 1, suspicious ports: 1, high traffic: 1
+2026-04-15 16:21:41 - network_monitor - INFO - Results saved to results.json
+2026-04-15 16:21:41 - network_monitor - INFO - Text report saved to report.txt

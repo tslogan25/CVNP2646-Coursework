@@ -8,6 +8,8 @@ Comprehensive logging (file + console with configurable levels)
 Full test coverage using unittest (23 tests)
 CLI support with argparse and validation
 Outputs structured results to results.json
+Generates human-readable report in report.txt
+Includes AI-enhanced behavioral detection rules
 Installation
 
 cd Week12
@@ -34,11 +36,11 @@ Week12/
 ├── traffic_sample.log
 ├── network_monitor.log
 ├── results.json
+├── report.txt
 └── README.md
 
 Output
-
-Console Output:
+Console Output
 
 Analysis complete
 Total packets: 147
@@ -47,15 +49,28 @@ Port scans detected: 1
 10.0.1.99
 SYN floods detected: 1
 172.16.0.77
-
-results.json:
+Suspicious port activity detected: X
+High traffic sources detected: X
+results.json
 
 {
 "total_packets": 147,
 "port_scans": ["10.0.1.99"],
-"syn_floods": ["172.16.0.77"]
+"syn_floods": ["172.16.0.77"],
+"suspicious_ports": ["10.0.1.99"],
+"high_traffic": ["172.16.0.77"]
 }
 
+report.txt
+
+The program generates a human-readable report that includes:
+
+Total packets analyzed
+Port scans detected
+SYN floods detected
+Suspicious port activity
+High traffic sources
+Summary of findings
 Logging
 
 Logs are written to:
@@ -66,6 +81,17 @@ Log levels:
 INFO → program flow
 WARNING → detected threats
 ERROR → malformed data
+AI-Enhanced Rules
+
+In addition to standard detection rules, the system applies AI-enhanced behavioral analysis:
+
+Suspicious Port Detection
+Flags source IPs targeting high-risk ports (22, 23, 3389), commonly associated with remote access or unauthorized activity
+High Traffic Volume Detection
+Flags IPs generating unusually high packet counts, indicating automation, scanning, or flooding behavior
+
+These rules improve detection by identifying patterns instead of relying only on fixed attack signatures.
+
 Refactoring Journey
 Problems with Original Code
 Global variables made testing difficult
@@ -83,7 +109,7 @@ Added full test coverage (23 tests)
 Built CLI using argparse with validation
 Biggest Challenge
 
-Separating I/O from logic was the most difficult part. The original code combined reading, parsing, and analysis, which required restructuring into independent, testable functions.
+Separating I/O from logic was the most difficult part. The original code combined reading, parsing, and analysis, requiring careful restructuring into independent, testable functions.
 
 Testing
 
@@ -93,6 +119,19 @@ python test_network_monitor.py
 Output:
 Ran 23 tests in 0.006s
 OK
+
+Text Report
+
+The program generates a report.txt file summarizing:
+
+Total packets analyzed
+Detected port scans
+Detected SYN floods
+Suspicious port activity
+High traffic sources
+Analysis summary
+
+This provides a clear, human-readable explanation of the results.
 
 AI-Assisted Development
 Tools Used
