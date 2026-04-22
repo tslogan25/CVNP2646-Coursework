@@ -1,0 +1,10 @@
+{
+  "required_sections": ["Overview", "Prerequisites", "Setup", "Usage", "Troubleshooting"],
+  "stale_after_days": 90,
+  "required_terms": ["nginx", "systemctl", "backup.sh"],
+  "weights": {
+    "missing_section": 30,
+    "stale_doc": 25,
+    "missing_term": 15
+  }
+}

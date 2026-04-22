@@ -1,0 +1,98 @@
+{
+  "results": [
+    {
+      "document": "backup_guide.md",
+      "score": 40,
+      "issues": [
+        {
+          "type": "missing_section",
+          "details": "Setup section not found"
+        },
+        {
+          "type": "missing_section",
+          "details": "Troubleshooting section not found"
+        }
+      ]
+    },
+    {
+      "document": "deployment.md",
+      "score": 0,
+      "issues": [
+        {
+          "type": "missing_section",
+          "details": "Prerequisites section not found"
+        },
+        {
+          "type": "missing_section",
+          "details": "Troubleshooting section not found"
+        },
+        {
+          "type": "missing_term",
+          "details": "Required term 'nginx' not found"
+        },
+        {
+          "type": "stale_doc",
+          "details": "Document is 430 days old"
+        }
+      ]
+    },
+    {
+      "document": "monitoring.md",
+      "score": 25,
+      "issues": [
+        {
+          "type": "missing_section",
+          "details": "Prerequisites section not found"
+        },
+        {
+          "type": "missing_section",
+          "details": "Usage section not found"
+        },
+        {
+          "type": "missing_term",
+          "details": "Required term 'nginx' not found"
+        }
+      ]
+    },
+    {
+      "document": "network_config.md",
+      "score": 0,
+      "issues": [
+        {
+          "type": "missing_section",
+          "details": "Prerequisites section not found"
+        },
+        {
+          "type": "missing_section",
+          "details": "Troubleshooting section not found"
+        },
+        {
+          "type": "missing_term",
+          "details": "Required term 'nginx' not found"
+        },
+        {
+          "type": "stale_doc",
+          "details": "Document is 475 days old"
+        }
+      ]
+    },
+    {
+      "document": "server_setup.md",
+      "score": 15,
+      "issues": [
+        {
+          "type": "missing_section",
+          "details": "Prerequisites section not found"
+        },
+        {
+          "type": "missing_section",
+          "details": "Troubleshooting section not found"
+        },
+        {
+          "type": "stale_doc",
+          "details": "Document is 466 days old"
+        }
+      ]
+    }
+  ]
+}

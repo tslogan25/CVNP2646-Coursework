@@ -1,0 +1,26 @@
+{
+  "documents": [
+    {
+      "file": "server_setup.md",
+      "path": "docs/server_setup.md"
+    },
+    {
+      "file": "backup_guide.md",
+      "path": "docs/backup_guide.md"
+    },
+    {
+      "file": "deployment.md",
+      "path": "docs/deployment.md"
+    },
+    {
+      "file": "monitoring.md",
+      "path": "docs/monitoring.md"
+    },
+    {
+      "file": "network_config.md",
+      "path": "docs/network_config.md"
+    }
+  ],
+  "rules_file": "rules.json",
+  "metadata_file": "metadata.json"
+}
