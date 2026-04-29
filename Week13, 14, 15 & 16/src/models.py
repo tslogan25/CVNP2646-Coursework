@@ -3,6 +3,7 @@ Core classes for Documentation Quality Analyzer
 """
 
 import os
+import logging
 from datetime import datetime
 
 
@@ -71,10 +72,64 @@ class DocumentationAnalyzer:
         self.rules = rules
         self.metadata = metadata or {}
 
+    def validate_rules(self):
+        """Validate rules JSON structure before analysis."""
+        required_keys = [
+            "required_sections",
+            "required_terms",
+            "stale_after_days",
+            "weights"
+        ]
+
+        missing_keys = [key for key in required_keys if key not in self.rules]
+        if missing_keys:
+            raise ValueError(
+                f"Missing required rule keys: {', '.join(missing_keys)}"
+            )
+
+        if not isinstance(self.rules["required_sections"], list):
+            raise ValueError("required_sections must be a list")
+
+        if not isinstance(self.rules["required_terms"], list):
+            raise ValueError("required_terms must be a list")
+
+        if not isinstance(self.rules["stale_after_days"], int):
+            raise ValueError("stale_after_days must be an integer")
+
+        if not isinstance(self.rules["weights"], dict):
+            raise ValueError("weights must be a dictionary")
+
+        required_weights = [
+            "missing_section",
+            "missing_term",
+            "stale_doc"
+        ]
+
+        missing_weights = [
+            weight for weight in required_weights
+            if weight not in self.rules["weights"]
+        ]
+
+        if missing_weights:
+            raise ValueError(
+                f"Missing required weights: {', '.join(missing_weights)}"
+            )
+
+        return True
+
     def load_document(self, filepath):
         """Load document content from file."""
+        if not os.path.exists(filepath):
+            logging.error(f"Input document not found: {filepath}")
+            raise FileNotFoundError(
+                f"Input document not found: '{filepath}'. Check the path and try again."
+            )
+
         with open(filepath, "r", encoding="utf-8") as f:
-            return f.read()
+            content = f.read()
+
+        logging.info(f"Loaded document: {filepath}")
+        return content
 
     def check_sections(self, content):
         """Check for required sections."""
@@ -83,12 +138,14 @@ class DocumentationAnalyzer:
 
         for section in self.rules.get("required_sections", []):
             if section.lower() not in content_lower:
+                logging.warning(f"Missing section detected: {section}")
                 issues.append(
                     DocumentationIssue(
                         "missing_section",
                         f"{section} section not found"
                     )
                 )
+
         return issues
 
     def check_terms(self, content):
@@ -103,6 +160,7 @@ class DocumentationAnalyzer:
 
         if not found_any_required_term:
             for term in self.rules.get("required_terms", []):
+                logging.warning(f"Missing required term detected: {term}")
                 issues.append(
                     DocumentationIssue(
                         "missing_term",
@@ -123,28 +181,42 @@ class DocumentationAnalyzer:
         for doc in self.metadata.get("documents", []):
             if doc.get("file") == filename:
                 last_updated = doc.get("last_updated")
+
                 if not last_updated:
+                    logging.warning(f"No last_updated value found for {filename}")
                     return issues
 
-                last_updated_date = datetime.strptime(last_updated, "%Y-%m-%d")
+                try:
+                    last_updated_date = datetime.strptime(last_updated, "%Y-%m-%d")
+                except ValueError as error:
+                    raise ValueError(
+                        f"Invalid date format for {filename}: '{last_updated}'. "
+                        "Expected YYYY-MM-DD."
+                    ) from error
+
                 days_old = (datetime.now() - last_updated_date).days
 
                 if days_old > self.rules.get("stale_after_days", 90):
+                    logging.warning(f"Stale document detected: {filename}")
                     issues.append(
                         DocumentationIssue(
                             "stale_doc",
                             f"Document is {days_old} days old"
                         )
                     )
+
                 break
 
         return issues
 
     def analyze_document(self, filepath):
         """Analyze a single document and return a DocumentReport."""
-        filename = os.path.basename(filepath)
-        content = self.load_document(filepath)
+        self.validate_rules()
 
+        filename = os.path.basename(filepath)
+        logging.info(f"Analyzing document: {filename}")
+
+        content = self.load_document(filepath)
         report = DocumentReport(filename)
 
         section_issues = self.check_sections(content)
@@ -160,6 +232,12 @@ class DocumentationAnalyzer:
             report.add_issue(issue, self.rules["weights"]["stale_doc"])
 
         report.calculate_score()
+
+        logging.info(
+            f"Completed analysis for {filename}: "
+            f"score={report.score}, issues={len(report.issues)}"
+        )
+
         return report
 
 

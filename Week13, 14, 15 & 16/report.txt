@@ -14,7 +14,7 @@ Issues:
 - Missing Section: Prerequisites section not found
 - Missing Section: Troubleshooting section not found
 - Missing Term: Required term 'nginx' not found
-- Stale Doc: Document is 430 days old
+- Stale Doc: Document is 437 days old
 
 ----------------------------------------
 
@@ -35,7 +35,7 @@ Issues:
 - Missing Section: Prerequisites section not found
 - Missing Section: Troubleshooting section not found
 - Missing Term: Required term 'nginx' not found
-- Stale Doc: Document is 475 days old
+- Stale Doc: Document is 482 days old
 
 ----------------------------------------
 
@@ -45,7 +45,7 @@ Score: 15
 Issues:
 - Missing Section: Prerequisites section not found
 - Missing Section: Troubleshooting section not found
-- Stale Doc: Document is 466 days old
+- Stale Doc: Document is 473 days old
 
 ----------------------------------------
 

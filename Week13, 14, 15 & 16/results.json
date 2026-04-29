@@ -32,7 +32,7 @@
         },
         {
           "type": "stale_doc",
-          "details": "Document is 430 days old"
+          "details": "Document is 437 days old"
         }
       ]
     },
@@ -72,7 +72,7 @@
         },
         {
           "type": "stale_doc",
-          "details": "Document is 475 days old"
+          "details": "Document is 482 days old"
         }
       ]
     },
@@ -90,7 +90,7 @@
         },
         {
           "type": "stale_doc",
-          "details": "Document is 466 days old"
+          "details": "Document is 473 days old"
         }
       ]
     }
