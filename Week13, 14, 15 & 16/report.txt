@@ -1,24 +1,26 @@
-Document: backup_guide.md
+Documentation Quality Analysis Report
+=============================================
+
+File: backup_guide.md
 Score: 40
 
 Issues:
 - Missing Section: Setup section not found
 - Missing Section: Troubleshooting section not found
 
-----------------------------------------
+---------------------------------------------
 
-Document: deployment.md
-Score: 0
+File: deployment.md
+Score: 25
 
 Issues:
 - Missing Section: Prerequisites section not found
 - Missing Section: Troubleshooting section not found
 - Missing Term: Required term 'nginx' not found
-- Stale Doc: Document is 437 days old
 
-----------------------------------------
+---------------------------------------------
 
-Document: monitoring.md
+File: monitoring.md
 Score: 25
 
 Issues:
@@ -26,26 +28,24 @@ Issues:
 - Missing Section: Usage section not found
 - Missing Term: Required term 'nginx' not found
 
-----------------------------------------
+---------------------------------------------
 
-Document: network_config.md
-Score: 0
+File: network_config.md
+Score: 25
 
 Issues:
 - Missing Section: Prerequisites section not found
 - Missing Section: Troubleshooting section not found
 - Missing Term: Required term 'nginx' not found
-- Stale Doc: Document is 482 days old
 
-----------------------------------------
+---------------------------------------------
 
-Document: server_setup.md
-Score: 15
+File: server_setup.md
+Score: 40
 
 Issues:
 - Missing Section: Prerequisites section not found
 - Missing Section: Troubleshooting section not found
-- Stale Doc: Document is 473 days old
 
-----------------------------------------
+---------------------------------------------
 

@@ -1,27 +1,30 @@
 Documentation Quality Analyzer
 
-A Python-based tool that analyzes technical documentation for completeness, required terminology, and staleness. This project helps IT operations teams, DevOps engineers, and technical writers maintain accurate and reliable documentation.
+A Python-based tool that analyzes technical documentation for completeness, required terminology, and staleness. This tool helps IT operations teams, DevOps engineers, and technical writers maintain accurate, consistent, and reliable documentation.
 
 Overview
 
-Technical documentation often becomes outdated, incomplete, or inconsistent over time. This leads to operational risk, slower troubleshooting, and confusion.
+Technical documentation often becomes incomplete, outdated, or inconsistent as systems evolve. This can lead to operational issues, slower troubleshooting, and increased risk.
 
 The Documentation Quality Analyzer solves this problem by:
 
 Checking for missing required sections
-Validating the presence of important technical terms
-Detecting outdated (stale) documentation using metadata
-Assigning quality scores to documents
-Generating structured and readable reports
+Validating required technical terms
+Detecting stale documents using metadata
+Assigning quality scores based on configurable rules
+Generating both structured and human-readable reports
 Features
-Section validation (Overview, Setup, Troubleshooting, etc.)
-Required term detection (nginx, systemctl, backup.sh)
+Required section validation (Overview, Setup, Troubleshooting, etc.)
+Required term detection (e.g., nginx, systemctl, backup.sh)
 Staleness detection using metadata
 Weighted scoring system
-JSON output (machine-readable)
-Text report output (human-readable)
+JSON output (results.json)
+Text report output (report.txt)
+CLI interface using argparse
+Logging with INFO, WARNING, and ERROR levels
 Input validation and clear error messages
-Logging for debugging and traceability
+Per-file error handling (continues processing on failure)
+Safe file filtering (skips unsupported files and folders)
 Automated testing using pytest
 Installation
 Prerequisites
@@ -39,21 +42,17 @@ python src/main.py --help
 Command Line Arguments
 Argument	Description
 --docs	Path to documentation directory
---rules	Path to rules configuration file
---metadata	(Optional) Metadata file for staleness checks
-Input Files
+--rules	Path to rules.json file
+--metadata	Optional metadata file for staleness detection
+Input Structure
 Documentation Files
-
-Stored in:
-
 docs/
+├── backup_guide.md
+├── deployment.md
 ├── monitoring.md
 ├── network_config.md
 └── server_setup.md
 rules.json
-
-Defines validation rules:
-
 {
   "required_sections": ["Overview", "Prerequisites", "Setup", "Usage", "Troubleshooting"],
   "stale_after_days": 90,
@@ -64,10 +63,7 @@ Defines validation rules:
     "missing_term": 15
   }
 }
-metadata.json
-
-Used to detect stale documents:
-
+metadata.json (optional)
 {
   "documents": [
     {
@@ -106,26 +102,32 @@ Scores never drop below 0.
 
 Error Handling & Validation
 
-The application validates inputs before processing:
+The analyzer includes robust validation and error handling:
 
-Ensures required keys exist in rules.json
-Validates data types
-Checks file existence before reading
-Provides clear error messages for:
-Missing files
-Invalid rules
-Incorrect metadata format
+Validates rules.json before processing
+Ensures correct data types and required fields
+Handles missing or invalid files gracefully
+Provides clear, user-friendly error messages
+File Filtering (Instructor Feedback Fix)
+Only .md and .txt files are processed
+Folders and unsupported files are skipped
+Prevents unexpected files from breaking execution
+Per-File Error Handling (Instructor Feedback Fix)
+Each document is processed independently
+If one file fails, the error is logged
+The analyzer continues processing remaining files
 
 Example:
 
-Input document not found: 'docs/file.md'. Check the path and try again.
+WARNING: Skipping unsupported file type: temp.log
+ERROR: Failed to analyze bad_file.md: Invalid content
 Logging
 
 Logging levels used:
 
-INFO → processing steps
-WARNING → missing sections/terms
-ERROR → failures
+INFO → Processing steps
+WARNING → Missing sections/terms or skipped files
+ERROR → Failures
 
 Example:
 
@@ -137,20 +139,20 @@ Run all tests:
 
 pytest tests/
 
-Run with verbose output:
+Verbose mode:
 
 pytest tests/ -v
 Test Coverage
 
-Includes tests for:
+Tests include:
 
 DocumentationIssue class
 DocumentReport scoring
-Section validation
-Term validation
-Edge cases (empty content)
-Missing file handling
 Analyzer logic
+Section validation
+Term detection
+Edge cases (empty files)
+Missing file handling
 Project Structure
 Week13, 14, 15 & 16/
 ├── docs/
@@ -168,23 +170,22 @@ Week13, 14, 15 & 16/
 ├── report.txt
 ├── requirements.txt
 └── README.md
-Design & Refactoring
-Modular architecture (models vs logic)
-Clean separation of concerns
-No global state
+Design & Code Quality
+Modular architecture (separation of concerns)
+Object-oriented design
+Clean, readable code structure
+No hardcoded paths
 Reusable components
-Maintainable and readable code
 AI Usage
 
 AI tools (ChatGPT) were used to:
 
-Improve code structure
-Expand test coverage
-Debug errors
-Enhance validation logic
-Improve documentation clarity
+Refactor and improve code structure
+Generate and expand test cases
+Debug errors and improve validation
+Enhance documentation quality
 
-All outputs were reviewed and adapted.
+All AI-generated content was reviewed, tested, and adjusted to ensure correctness.
 
 Author
 

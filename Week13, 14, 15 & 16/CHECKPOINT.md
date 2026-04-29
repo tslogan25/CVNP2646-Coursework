@@ -1,270 +1,117 @@
-\# Implementation Checkpoint – Week 13
+Week 14 Implementation Checkpoint
 
+Documentation Quality Analyzer
 
+What Works
 
-\## What Works
+The Documentation Quality Analyzer successfully runs end-to-end from the command line and processes documentation files as intended. The tool demonstrates a complete working pipeline from input to output.
 
+Core Functionality
+Reads documentation files from the docs/ directory
+Analyzes each document for:
+Missing required sections
+Missing required terms
+Staleness (when metadata is provided)
+Applies rule-based scoring using configurable weights
+Generates two outputs:
+results.json (structured output)
+report.txt (human-readable report)
+CLI Interface
 
+The program runs using a command-line interface built with argparse.
 
-1\. \*\*Documentation Analysis\*\*
+Example:
 
-&#x20;  - The tool successfully analyzes multiple documentation files from the `docs/` directory
+python src/main.py --docs docs --rules rules.json
 
-&#x20;  - Tested with 5 sample files: `server\_setup.md`, `deployment.md`, `backup\_guide.md`, `monitoring.md`, and `network\_config.md`
+Optional metadata support:
 
-&#x20;  - Correctly identifies missing sections such as "Prerequisites", "Setup", and "Troubleshooting"
+python src/main.py --docs docs --rules rules.json --metadata metadata.json
+Logging
 
+The tool uses logging to provide clear feedback during execution:
 
+INFO → processing steps
+WARNING → missing sections or terms
+ERROR → failures
 
-2\. \*\*Required Term Detection\*\*
+This allows users to track progress and understand issues easily.
 
-&#x20;  - Detects missing required terms defined in `rules.json` (e.g., `nginx`, `systemctl`, `backup.sh`)
+Object-Oriented Design
 
-&#x20;  - Verified with sample documents where certain terms were intentionally omitted
+The system uses a clean OOP structure:
 
-&#x20;  - Currently flags missing terms if none of the required terms are present
+DocumentationAnalyzer → handles analysis logic
+DocumentReport → stores scoring and results
+DocumentationIssue → represents individual issues
+Testing
+Automated testing implemented using pytest
+16 tests currently pass
+Test coverage includes:
+Object creation
+Score calculations
+Section validation
+Term detection
+Edge cases (empty input)
+Missing file handling
+What’s Missing
 
+While the core functionality is complete, some improvements could be added:
 
+No recursive scanning of nested directories
+Limited rule customization beyond rules.json
+No graphical user interface (CLI only)
+Advanced scoring models or weighting strategies could be expanded
+No support for additional file formats beyond .md and .txt
+Changes from Proposal
 
-3\. \*\*Staleness Detection\*\*
+Several changes were made during development to improve the project:
 
-&#x20;  - Uses `metadata.json` to determine document age
+The design was simplified to focus on a rule-based analyzer
+Output was expanded to include both JSON and text reports
+Logging was added to improve visibility and debugging
+Validation and error handling were strengthened
+Improvements Based on Instructor Feedback
 
-&#x20;  - Correctly flags documents older than the configured threshold (90 days)
+After receiving feedback, the following important improvements were implemented:
 
-&#x20;  - Example: `deployment.md` flagged as stale (\~430 days old)
+File Handling Improvements
+The program now filters files in the docs directory
+Only .md and .txt files are processed
+Folders, nested directories, and unsupported files are skipped
+Prevents unexpected files from causing errors
+Per-File Error Handling
+Each document is processed independently
+If one file fails during analysis:
+The error is logged
+The program continues processing remaining files
+Prevents a single failure from stopping the entire run
 
+These changes significantly improved the robustness and reliability of the tool.
 
+AI Usage
 
-4\. \*\*Scoring System\*\*
+AI tools (ChatGPT) were used to support development by:
 
-&#x20;  - Deducts points based on rule weights:
+Assisting with class design and refactoring
+Generating and improving test cases
+Debugging errors during development
+Enhancing validation and error handling logic
+Improving documentation and README quality
 
-&#x20;    - Missing section: 30 points
+All AI-generated content was reviewed, tested, and modified to ensure correctness and alignment with project requirements.
 
-&#x20;    - Missing term: 15 points
+Summary
 
-&#x20;    - Stale document: 25 points
+The Documentation Quality Analyzer meets all Week 14 requirements:
 
-&#x20;  - Scores are calculated per document and capped at a minimum of 0
+Runs successfully from the command line
+Processes real documentation files
+Produces meaningful outputs
+Uses object-oriented design
+Includes logging and error handling
+Provides automated test coverage
 
+Additionally, improvements based on instructor feedback have made the tool more robust and closer to production-ready quality.
 
-
-5\. \*\*Command-Line Interface (CLI)\*\*
-
-&#x20;  - Fully functional CLI using argparse
-
-&#x20;  - Supports arguments:
-
-&#x20;    - `--docs`
-
-&#x20;    - `--rules`
-
-&#x20;    - `--metadata`
-
-&#x20;    - `--output`
-
-&#x20;    - `--report`
-
-&#x20;    - `--verbose`
-
-&#x20;  - Help command (`--help`) displays correctly
-
-
-
-6\. \*\*Output Generation\*\*
-
-&#x20;  - Generates:
-
-&#x20;    - `results.json` (structured output)
-
-&#x20;    - `report.txt` (human-readable report)
-
-&#x20;  - Output formatting is clean and readable
-
-
-
-7\. \*\*Logging and Error Handling\*\*
-
-&#x20;  - Uses logging module with INFO and ERROR levels
-
-&#x20;  - Handles:
-
-&#x20;    - Missing files
-
-&#x20;    - Invalid JSON
-
-&#x20;    - Unexpected errors
-
-&#x20;  - Example: Running with `fake.json` logs error without crashing
-
-
-
-8\. \*\*Unit Testing\*\*
-
-&#x20;  - Tests implemented in `Tests/test\_analyzer.py`
-
-&#x20;  - Covers:
-
-&#x20;    - Missing section detection
-
-&#x20;    - Missing term detection
-
-&#x20;    - No issues case
-
-&#x20;    - Stale document detection
-
-&#x20;  - All tests pass successfully
-
-
-
-\---
-
-
-
-\## What's Missing
-
-
-
-\- \*\*Term Detection Limitation\*\*
-
-&#x20; - Currently only checks if \*any\* required term exists
-
-&#x20; - Does not verify that \*all\* required terms are present
-
-
-
-\- \*\*Basic Section Matching\*\*
-
-&#x20; - Section detection is based on simple string matching
-
-&#x20; - Does not validate proper formatting (e.g., Markdown headers)
-
-
-
-\- \*\*Limited Staleness Logic\*\*
-
-&#x20; - Only checks document age from metadata
-
-&#x20; - Does not validate missing metadata entries
-
-
-
-\- \*\*No Advanced Analysis\*\*
-
-&#x20; - Does not check:
-
-&#x20;   - Section order
-
-&#x20;   - Content quality
-
-&#x20;   - Consistency between documents
-
-
-
-\---
-
-
-
-\## Changes from Proposal
-
-
-
-\- \*\*Simplified Detection Logic\*\*
-
-&#x20; - Initially planned more advanced analysis (e.g., deeper validation of documentation structure)
-
-&#x20; - Implemented simpler string-based checks for reliability and faster development
-
-
-
-\- \*\*Input Design Adjustment\*\*
-
-&#x20; - Proposal considered JSON-based input for documents
-
-&#x20; - Switched to analyzing real `.md` files from a directory for a more realistic use case
-
-
-
-\- \*\*Focused Scope\*\*
-
-&#x20; - Prioritized core features:
-
-&#x20;   - Section validation
-
-&#x20;   - Term validation
-
-&#x20;   - Staleness detection
-
-&#x20; - Deferred advanced features to future phases
-
-
-
-\---
-
-
-
-\## AI Usage This Week
-
-
-
-\- \*\*Tools Used\*\*
-
-&#x20; - ChatGPT (primary)
-
-&#x20; - GitHub Copilot (minor assistance)
-
-
-
-\- \*\*Examples of AI Assistance\*\*
-
-&#x20; - Generated initial structure for:
-
-&#x20;   - `DocumentationAnalyzer` class
-
-&#x20;   - CLI (`argparse`) setup
-
-&#x20;   - JSON output formatting
-
-&#x20; - Suggested improvements for:
-
-&#x20;   - error handling (`try/except`)
-
-&#x20;   - logging integration
-
-&#x20;   - report formatting
-
-
-
-\- \*\*Modifications Made\*\*
-
-&#x20; - Adjusted AI-generated code to:
-
-&#x20;   - match project requirements
-
-&#x20;   - fix indentation and logic errors
-
-&#x20;   - improve readability and structure
-
-
-
-\- \*\*Rejected Suggestions\*\*
-
-&#x20; - Rejected overly complex designs (e.g., unnecessary abstraction layers)
-
-&#x20; - Simplified logic to keep implementation aligned with assignment scope
-
-
-
-\- \*\*Verification Process\*\*
-
-&#x20; - Tested all AI-generated code using:
-
-&#x20;   - CLI runs
-
-&#x20;   - unit tests
-
-&#x20;   - manual inspection of outputs (`results.json`, `report.txt`)
-
-&#x20; - Debugged and corrected errors before final implementation
-
+The project is stable, testable, and ready for further refinement in Week 15.
