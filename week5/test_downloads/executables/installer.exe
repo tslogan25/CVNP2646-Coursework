@@ -1,0 +1,116 @@
+# =======================
+# Configuration (EDIT ME)
+# =======================
+$AppName        = "YourApp"
+$AppVersion     = "1.0.0"
+$Publisher      = "Your Name or Org"
+$SourceDir      = "C:\Path\To\payload"            # Folder containing files to install
+$InstallDir     = "C:\Program Files\YourApp"      # Target install directory
+$MainExe        = "yourapp.cmd"                   # Main entry file (after install)
+$IconPath       = "$SourceDir\yourapp.ico"        # Optional icon for shortcuts
+$AddToPath      = $true
+$ShortcutName   = "$AppName.lnk"
+$DesktopShortcut= "$([Environment]::GetFolderPath('Desktop'))\$ShortcutName"
+$StartMenuDir   = "$([Environment]::GetFolderPath('Programs'))\$AppName"
+$StartMenuShortcut = "$StartMenuDir\$ShortcutName"
+$UninstallScript= "$InstallDir\uninstall_$AppName.ps1"
+$UninstallKey   = "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\$AppName"
+
+# =======================
+# Helper: elevate if needed
+# =======================
+function Ensure-Admin() {
+    $currentUser = [Security.Principal.WindowsIdentity]::GetCurrent()
+    $principal   = New-Object Security.Principal.WindowsPrincipal($currentUser)
+    if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+        Write-Host "Re-launching with elevated privileges..."
+        $psi = New-Object System.Diagnostics.ProcessStartInfo "powershell"
+        $psi.Arguments = "-ExecutionPolicy Bypass -File `"$PSCommandPath`""
+        $psi.Verb = "runas"
+        [System.Diagnostics.Process]::Start($psi) | Out-Null
+        exit
+    }
+}
+Ensure-Admin
+
+# =======================
+# Create install directory and copy files
+# =======================
+Write-Host "Installing $AppName $AppVersion..."
+New-Item -ItemType Directory -Force -Path $InstallDir | Out-Null
+Copy-Item -Path (Join-Path $SourceDir '*') -Destination $InstallDir -Recurse -Force
+
+# =======================
+# Optionally add to PATH (system-wide)
+# =======================
+if ($AddToPath) {
+    $envPath = [Environment]::GetEnvironmentVariable("Path","Machine")
+    if ($envPath -notlike "*$InstallDir*") {
+        [Environment]::SetEnvironmentVariable("Path", $envPath + ";" + $InstallDir, "Machine")
+        Write-Host "Added to PATH: $InstallDir"
+    } else {
+        Write-Host "PATH already contains: $InstallDir"
+    }
+}
+
+# =======================
+# Create Start Menu and Desktop shortcuts
+# =======================
+function New-Shortcut($TargetPath, $ShortcutPath, $Icon = $null, $WorkingDir = $null) {
+    $WScriptShell = New-Object -ComObject WScript.Shell
+    $shortcut = $WScriptShell.CreateShortcut($ShortcutPath)
+    $shortcut.TargetPath = $TargetPath
+    if ($WorkingDir) { $shortcut.WorkingDirectory = $WorkingDir }
+    if ($Icon -and (Test-Path $Icon)) { $shortcut.IconLocation = $Icon }
+    $shortcut.Save()
+}
+
+New-Item -ItemType Directory -Force -Path $StartMenuDir | Out-Null
+$TargetForShortcuts = Join-Path $InstallDir $MainExe
+
+New-Shortcut -TargetPath $TargetForShortcuts -ShortcutPath $DesktopShortcut -Icon $IconPath -WorkingDir $InstallDir
+New-Shortcut -TargetPath $TargetForShortcuts -ShortcutPath $StartMenuShortcut -Icon $IconPath -WorkingDir $InstallDir
+Write-Host "Shortcuts created on Desktop and Start Menu."
+
+# =======================
+# Create Uninstall script
+# =======================
+$uninstallContent = @"
+# Uninstall script for $AppName
+param([switch]\$Silent)
+
+function Remove-FromPath(\$pathToRemove) {
+    \$envPath = [Environment]::GetEnvironmentVariable('Path','Machine')
+    if (\$envPath -like \"*\$pathToRemove*\") {
+        \$parts = \$envPath.Split(';') | Where-Object { \$_ -and (\$_ -ne \$pathToRemove) }
+        [Environment]::SetEnvironmentVariable('Path', (\$parts -join ';'), 'Machine')
+    }
+}
+
+# Remove shortcuts
+try { Remove-Item -Force -ErrorAction SilentlyContinue \"$DesktopShortcut\" } catch {}
+try { Remove-Item -Force -ErrorAction SilentlyContinue \"$StartMenuShortcut\" } catch {}
+try { Remove-Item -Force -ErrorAction SilentlyContinue \"$StartMenuDir\" -Recurse } catch {}
+
+# Remove PATH entry
+Remove-FromPath \"$InstallDir\"
+
+# Remove files
+try { Remove-Item -Force -Recurse \"$InstallDir\" } catch {}
+
+# Remove uninstall registry key
+try { Remove-Item -Force \"$UninstallKey\" } catch {}
+
+if (-not \$Silent) { Write-Host \"$AppName has been uninstalled.\" }
+"@
+
+$uninstallContent | Out-File -FilePath $UninstallScript -Encoding UTF8 -Force
+Write-Host "Uninstall script written to: $UninstallScript"
+
+# =======================
+# Register in Add/Remove Programs (Control Panel)
+# =======================
+New-Item -Path $UninstallKey -Force | Out-Null
+Set-ItemProperty -Path $UninstallKey -Name "DisplayName" -Value $AppName
+Set-ItemProperty -Path $UninstallKey -Name "Publisher"   -Value $Publisher
+Set-ItemProperty -Path $UninstallKey -Name "DisplayVersion" -Value $AppVersion

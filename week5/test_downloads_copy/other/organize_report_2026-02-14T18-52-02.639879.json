@@ -1,0 +1,17 @@
+{
+    "timestamp": "2026-02-14T18:52:02.639879",
+    "folder": "C:\\Users\\tslog\\Python_Course\\CVNP2646-Coursework\\Week5\\test_downloads",
+    "mode": "category",
+    "include_hidden": false,
+    "dry_run": false,
+    "retries": 3,
+    "wait": 0.5,
+    "total_considered": 0,
+    "moved": 0,
+    "skipped": 0,
+    "failed": 0,
+    "counts_by_bucket": {},
+    "errors": [],
+    "report_json_path": "C:\\Users\\tslog\\Python_Course\\CVNP2646-Coursework\\Week5\\test_downloads\\organize_report_2026-02-14T18-52-02.639879.json",
+    "report_txt_path": "C:\\Users\\tslog\\Python_Course\\CVNP2646-Coursework\\Week5\\test_downloads\\organize_report_2026-02-14T18-52-02.639879.txt"
+}

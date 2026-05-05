@@ -1,0 +1,24 @@
+{
+  "documents": [
+    {
+      "file": "server_setup.md",
+      "content": "## Overview\nThis document explains server setup.\n## Setup\nInstall nginx.\n## Usage\nRun systemctl start nginx."
+    },
+    {
+      "file": "backup_guide.md",
+      "content": "## Overview\nBackup instructions.\n## Prerequisites\nEnsure backup.sh exists.\n## Usage\nRun backup.sh daily."
+    },
+    {
+      "file": "deployment.md",
+      "content": "## Overview\nDeployment steps.\n## Setup\nConfigure environment variables.\n## Usage\nDeploy using scripts."
+    },
+    {
+      "file": "monitoring.md",
+      "content": "## Overview\nMonitoring system.\n## Setup\nInstall tools.\n## Troubleshooting\nRestart services."
+    },
+    {
+      "file": "network_config.md",
+      "content": "## Overview\nNetwork configuration guide.\n## Setup\nConfigure firewall.\n## Usage\nApply rules."
+    }
+  ]
+}

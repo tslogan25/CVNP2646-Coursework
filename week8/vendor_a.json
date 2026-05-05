@@ -1,0 +1,48 @@
+{
+  "vendor": "VendorA",
+  "generated_at": "2026-03-16T17:00:00Z",
+  "indicators": [
+    {
+      "type": "ip",
+      "value": "203.0.113.50",
+      "severity": "critical",
+      "confidence": "high",
+      "source": "VendorA"
+    },
+    {
+      "type": "domain",
+      "value": "login-security-check.com",
+      "severity": "high",
+      "confidence": "high",
+      "source": "VendorA"
+    },
+    {
+      "type": "domain",
+      "value": "account-update-portal.net",
+      "severity": "high",
+      "confidence": "medium",
+      "source": "VendorA"
+    },
+    {
+      "type": "hash",
+      "value": "8d969eef6ecad3c29a3a629280e686cff8ca0a1e0f6b6f5d7d28e17f72f7c5c0",
+      "severity": "medium",
+      "confidence": "high",
+      "source": "VendorA"
+    },
+    {
+      "type": "ip",
+      "value": "198.51.100.77",
+      "severity": "low",
+      "confidence": "low",
+      "source": "VendorA"
+    },
+    {
+      "type": "url",
+      "value": "http://malicious-cdn-check.net/update",
+      "severity": "medium",
+      "confidence": "medium",
+      "source": "VendorA"
+    }
+  ]
+}

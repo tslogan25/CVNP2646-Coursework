@@ -1,0 +1,51 @@
+[
+  {
+    "path": "logging.destination",
+    "drift_type": "missing",
+    "baseline_value": "siem",
+    "current_value": null,
+    "severity": "MEDIUM"
+  },
+  {
+    "path": "logging.enabled",
+    "drift_type": "changed",
+    "baseline_value": true,
+    "current_value": false,
+    "severity": "HIGH"
+  },
+  {
+    "path": "logging.level",
+    "drift_type": "changed",
+    "baseline_value": "info",
+    "current_value": "debug",
+    "severity": "LOW"
+  },
+  {
+    "path": "rules[0].port",
+    "drift_type": "changed",
+    "baseline_value": 443,
+    "current_value": 8080,
+    "severity": "LOW"
+  },
+  {
+    "path": "rules[1].source",
+    "drift_type": "changed",
+    "baseline_value": "10.0.0.0/8",
+    "current_value": "0.0.0.0/0",
+    "severity": "LOW"
+  },
+  {
+    "path": "rules[2]",
+    "drift_type": "extra",
+    "baseline_value": null,
+    "current_value": {
+      "name": "temp-debug",
+      "port": 9999,
+      "protocol": "tcp",
+      "source": "0.0.0.0/0",
+      "action": "allow",
+      "enabled": true
+    },
+    "severity": "LOW"
+  }
+]

@@ -1,0 +1,20 @@
+{
+    "generated_at": "2026-02-14T14:01:40.596455",
+    "analysis": {
+        "total_entries": 5,
+        "allow_count": 2,
+        "deny_count": 3,
+        "denied_source_ips": [
+            "198.51.100.7",
+            "203.0.113.5",
+            "203.0.113.6"
+        ],
+        "most_targeted_port": 22,
+        "most_targeted_count": 2,
+        "time_range": {
+            "first": "2025-01-01 12:00:01",
+            "last": "2025-01-01 12:04:05"
+        }
+    },
+    "errors": []
+}

@@ -1,0 +1,47 @@
+{
+  "provider": "VendorB",
+  "created_on": "2026-03-16T17:10:00Z",
+  "items": [
+    {
+      "indicator_type": "ipv4",
+      "indicator_value": "203.0.113.50",
+      "threat": "critical",
+      "confidence_score": "medium",
+      "feed": "VendorB"
+    },
+    {
+      "indicator_type": "domain_name",
+      "indicator_value": "secure-auth-reset.org",
+      "threat": "high",
+      "confidence_score": "high",
+      "feed": "VendorB"
+    },
+    {
+      "indicator_type": "sha256",
+      "indicator_value": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce",
+      "threat": "medium",
+      "confidence_score": "medium",
+      "feed": "VendorB"
+    },
+    {
+      "indicator_type": "url",
+      "indicator_value": "http://cdn-auth-sync.bad/update",
+      "threat": "high",
+      "confidence_score": "low",
+      "feed": "VendorB"
+    },
+    {
+      "indicator_type": "ipv4",
+      "indicator_value": "192.0.2.88",
+      "threat": "low",
+      "confidence_score": "low",
+      "feed": "VendorB"
+    },
+    {
+      "indicator_type": "domain_name",
+      "indicator_value": "missing-field-test.net",
+      "threat": "medium",
+      "feed": "VendorB"
+    }
+  ]
+}

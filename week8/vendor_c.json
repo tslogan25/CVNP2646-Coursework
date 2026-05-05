@@ -1,0 +1,48 @@
+{
+  "source_name": "VendorC",
+  "export_time": "2026-03-16T17:20:00Z",
+  "observables": [
+    {
+      "ioc_type": "fqdn",
+      "ioc": "login-security-check.com",
+      "severity_level": "high",
+      "confidence_level": "high",
+      "origin": "VendorC"
+    },
+    {
+      "ioc_type": "ipv4",
+      "ioc": "198.51.100.120",
+      "severity_level": "critical",
+      "confidence_level": "high",
+      "origin": "VendorC"
+    },
+    {
+      "ioc_type": "sha256",
+      "ioc": "7d793037a0760186574b0282f2f435e7a6b1a5d4f6d9ab1c2e3f4a5b6c7d8e9f",
+      "severity_level": "medium",
+      "confidence_level": "medium",
+      "origin": "VendorC"
+    },
+    {
+      "ioc_type": "url",
+      "ioc": "http://portal-session-verify.info/login",
+      "severity_level": "high",
+      "confidence_level": "medium",
+      "origin": "VendorC"
+    },
+    {
+      "ioc_type": "email",
+      "ioc": "alerts@credential-reset-support.net",
+      "severity_level": "low",
+      "confidence_level": "low",
+      "origin": "VendorC"
+    },
+    {
+      "ioc_type": "domain",
+      "ioc": "payment-review-center.biz",
+      "severity_level": "medium",
+      "confidence_level": "high",
+      "origin": "VendorC"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+Network Traffic Monitor Report
+==============================
+Total packets analyzed: 147
+
+Port scans detected: 1
+  - 10.0.1.99
+
+SYN floods detected: 1
+  - 172.16.0.77
+
+Suspicious port activity detected: 1
+  - 10.0.1.99
+
+High traffic sources detected: 1
+  - 172.16.0.77
+
+Analysis Summary:
+This analysis uses layered detection rules to identify signature-based threats
+(port scans and SYN floods) and AI-enhanced behavioral indicators
+(high-risk port targeting and abnormal traffic volume).

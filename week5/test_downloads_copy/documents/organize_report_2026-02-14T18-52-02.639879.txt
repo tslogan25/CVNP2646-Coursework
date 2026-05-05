@@ -1,0 +1,24 @@
+ORGANIZE REPORT
+============================================================
+Timestamp     : 2026-02-14T18:52:02.639879
+Folder        : C:\Users\tslog\Python_Course\CVNP2646-Coursework\Week5\test_downloads
+Mode          : category (bucket = category)
+Include Hidden: False
+Dry Run       : False
+Retries       : 3
+Initial Wait  : 0.5s
+
+SUMMARY
+------------------------------------------------------------
+Total Considered : 0
+Moved            : 0
+Skipped          : 0
+Failed           : 0
+
+COUNTS BY BUCKET
+------------------------------------------------------------
+(none)
+
+ERRORS
+------------------------------------------------------------
+(none)

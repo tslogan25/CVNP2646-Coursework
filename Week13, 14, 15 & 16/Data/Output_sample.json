@@ -1,0 +1,53 @@
+{
+  "results": [
+    {
+      "document": "server_setup.md",
+      "score": 75,
+      "issues": [
+        {
+          "type": "missing_section",
+          "details": "Prerequisites section not found"
+        }
+      ]
+    },
+    {
+      "document": "backup_guide.md",
+      "score": 90,
+      "issues": []
+    },
+    {
+      "document": "deployment.md",
+      "score": 70,
+      "issues": [
+        {
+          "type": "missing_section",
+          "details": "Troubleshooting section not found"
+        }
+      ]
+    },
+    {
+      "document": "monitoring.md",
+      "score": 80,
+      "issues": [
+        {
+          "type": "missing_section",
+          "details": "Usage section not found"
+        }
+      ]
+    },
+    {
+      "document": "network_config.md",
+      "score": 65,
+      "issues": [
+        {
+          "type": "missing_section",
+          "details": "Prerequisites section not found"
+        },
+        {
+          "type": "missing_term",
+          "details": "Required term 'nginx' not found"
+        }
+      ]
+    }
+  ]
+}

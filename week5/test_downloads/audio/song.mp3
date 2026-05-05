@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+# create_song.py
+# Creates a simple MP3 file (silent audio)
+
+from pathlib import Path
+import base64
+
+# Output file
+OUTPUT_FILE = Path("song.mp3")
+
+# Small valid MP3 (1 second silence)
+MP3_BASE64 = (
+    "SUQzAwAAAAAAF1RTU0UAAAAPAAADTGF2ZjU4LjI5LjEwMAAAAAAAAAAAAAAA//uQxAADBzQASAAA"
+    "AABpAAAACAAACcQCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg"
+    "ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg"
+    "ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg"
+)
+
+def create_mp3(file_path):
+    """Create an MP3 file from base64 data."""
+
+    try:
+        # Fix base64 padding
+        data = MP3_BASE64
+        if len(data) % 4 != 0:
+            data += "=" * (4 - len(data) % 4)
+
+        mp3_bytes = base64.b64decode(data)
+
+        with open(file_path, "wb") as f:
+            f.write(mp3_bytes)
+
+        print(f"MP3 file created: {file_path}")
+
+    except Exception as e:
+        print(f"Error creating MP3: {e}")
+
+
+if __name__ == "__main__":
+    create_mp3(OUTPUT_FILE)

@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "generated_at": "2026-02-26T23:33:41.752489",
+    "analyst": "Tanya"
+  },
+  "summary": {
+    "total_logs": 0,
+    "parsed_logs": 0,
+    "failed_logins": 0,
+    "failure_rate_percent": 0
+  },
+  "top_users": [],
+  "top_ips": []
+}

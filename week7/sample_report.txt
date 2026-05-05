@@ -1,0 +1,42 @@
+======================================================================
+BACKUP PLAN: Security Logs Daily Backup
+Generated:   2026-03-05 17:50:38
+MODE:        DRY-RUN (No files will be copied)
+======================================================================
+
+SUMMARY
+----------------------------------------------------------------------
+Total Sources:                2
+Total Files:                 15
+Total Size:              603.96 MB
+
+DETAILS BY SOURCE
+----------------------------------------------------------------------
+
+Source Path: /var/log/firewall
+Files:                   6
+Total Size:         215.16 MB
+
+  Sample Files:
+   - report_99.txt                               49.00 MB
+   - report_2.txt                                26.79 MB
+   - report_2.txt                                57.29 MB
+   - report_32.txt                               29.71 MB
+   - report_7.txt                                 7.89 MB
+   ... and 1 more files
+
+Source Path: /var/log/suricata
+Files:                   9
+Total Size:         388.80 MB
+
+  Sample Files:
+   - file_555.csv                                28.91 MB
+   - file_223.log                                43.96 MB
+   - file_195.json                               33.78 MB
+   - file_249.json                               97.95 MB
+   - file_212.csv                                56.30 MB
+   ... and 4 more files
+
+======================================================================
+DRY-RUN COMPLETE: No files were copied.
+======================================================================
