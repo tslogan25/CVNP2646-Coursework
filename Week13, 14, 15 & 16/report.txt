@@ -1,51 +1,46 @@
-Documentation Quality Analysis Report
-=============================================
+Documentation Quality Analyzer Report
+==================================================
 
-File: backup_guide.md
-Score: 40
-
+Document: backup_guide.md
+Score: 0
 Issues:
-- Missing Section: Setup section not found
-- Missing Section: Troubleshooting section not found
+- missing_section: Setup section not found
+- missing_section: Troubleshooting section not found
+- missing_term: Required term 'nginx' not found
+- missing_term: Required term 'systemctl' not found
 
----------------------------------------------
-
-File: deployment.md
-Score: 25
-
+Document: deployment.md
+Score: 0
 Issues:
-- Missing Section: Prerequisites section not found
-- Missing Section: Troubleshooting section not found
-- Missing Term: Required term 'nginx' not found
+- missing_section: Prerequisites section not found
+- missing_section: Troubleshooting section not found
+- missing_term: Required term 'nginx' not found
+- missing_term: Required term 'systemctl' not found
+- missing_term: Required term 'backup.sh' not found
 
----------------------------------------------
-
-File: monitoring.md
-Score: 25
-
+Document: monitoring.md
+Score: 0
 Issues:
-- Missing Section: Prerequisites section not found
-- Missing Section: Usage section not found
-- Missing Term: Required term 'nginx' not found
+- missing_section: Prerequisites section not found
+- missing_section: Usage section not found
+- missing_term: Required term 'nginx' not found
+- missing_term: Required term 'systemctl' not found
+- missing_term: Required term 'backup.sh' not found
 
----------------------------------------------
-
-File: network_config.md
-Score: 25
-
+Document: network_config.md
+Score: 0
 Issues:
-- Missing Section: Prerequisites section not found
-- Missing Section: Troubleshooting section not found
-- Missing Term: Required term 'nginx' not found
+- missing_section: Prerequisites section not found
+- missing_section: Troubleshooting section not found
+- missing_term: Required term 'nginx' not found
+- missing_term: Required term 'systemctl' not found
+- missing_term: Required term 'backup.sh' not found
 
----------------------------------------------
-
-File: server_setup.md
-Score: 40
-
+Document: server_setup.md
+Score: 0
 Issues:
-- Missing Section: Prerequisites section not found
-- Missing Section: Troubleshooting section not found
-
----------------------------------------------
+- missing_section: Prerequisites section not found
+- missing_section: Troubleshooting section not found
+- missing_term: Required term 'backup.sh' not found
+- stale_doc: server_setup.md is stale
 

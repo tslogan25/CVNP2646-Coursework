@@ -1,193 +1,325 @@
-Documentation Quality Analyzer
+# Documentation Quality Analyzer
 
-A Python-based tool that analyzes technical documentation for completeness, required terminology, and staleness. This tool helps IT operations teams, DevOps engineers, and technical writers maintain accurate, consistent, and reliable documentation.
+## Project Overview
 
-Overview
+The Documentation Quality Analyzer is a rule-based Python tool that analyzes technical documentation for quality issues. It checks documentation files for missing required sections, missing technical terms, and stale update dates.
 
-Technical documentation often becomes incomplete, outdated, or inconsistent as systems evolve. This can lead to operational issues, slower troubleshooting, and increased risk.
+This tool is useful because technical documentation can become outdated, incomplete, or inconsistent over time. By automatically checking documentation quality, the tool helps IT teams, system administrators, DevOps engineers, and technical writers identify problems before they cause confusion or operational risk.
 
-The Documentation Quality Analyzer solves this problem by:
+---
 
-Checking for missing required sections
-Validating required technical terms
-Detecting stale documents using metadata
-Assigning quality scores based on configurable rules
-Generating both structured and human-readable reports
-Features
-Required section validation (Overview, Setup, Troubleshooting, etc.)
-Required term detection (e.g., nginx, systemctl, backup.sh)
-Staleness detection using metadata
-Weighted scoring system
-JSON output (results.json)
-Text report output (report.txt)
-CLI interface using argparse
-Logging with INFO, WARNING, and ERROR levels
-Input validation and clear error messages
-Per-file error handling (continues processing on failure)
-Safe file filtering (skips unsupported files and folders)
-Automated testing using pytest
-Installation
-Prerequisites
-Python 3.8+
-pip
-Setup
+## Features
+
+- Loads Markdown and text documentation files from a `docs/` folder
+- Loads rules from `data/rules.json`
+- Loads optional metadata from `data/metadata.json`
+- Detects missing required sections
+- Detects missing required technical terms
+- Detects stale documentation
+- Calculates quality scores
+- Generates structured JSON output
+- Generates a human-readable text report
+- Uses a command-line interface with `argparse`
+- Includes logging and error handling
+- Includes pytest unit tests
+
+---
+
+## Installation
+
+### Prerequisites
+
+- Python 3.8 or higher
+- pip package manager
+
+### Setup
+
+Install required packages:
+
+```bash
 pip install -r requirements.txt
-Usage
-Basic Run
-python src/main.py --docs docs --rules rules.json
-Run with Metadata (Staleness Detection)
-python src/main.py --docs docs --rules rules.json --metadata metadata.json
-Help Menu
-python src/main.py --help
-Command Line Arguments
-Argument	Description
---docs	Path to documentation directory
---rules	Path to rules.json file
---metadata	Optional metadata file for staleness detection
-Input Structure
-Documentation Files
-docs/
-├── backup_guide.md
-├── deployment.md
-├── monitoring.md
-├── network_config.md
-└── server_setup.md
-rules.json
+```
+
+If pytest is not already installed, install it with:
+
+```bash
+pip install pytest
+```
+
+---
+
+## Usage
+
+Run the analyzer from the main project folder:
+
+```bash
+python src/main.py --docs docs --rules data/rules.json --metadata data/metadata.json
+```
+
+You can also run it without metadata:
+
+```bash
+python src/main.py --docs docs --rules data/rules.json
+```
+
+---
+
+## CLI Arguments
+
+| Argument | Required | Description |
+|---|---|---|
+| `--docs` | Yes | Path to the documentation folder |
+| `--rules` | Yes | Path to the rules JSON file |
+| `--metadata` | No | Path to the metadata JSON file |
+
+---
+
+## Input Files
+
+### Documentation Files
+
+Documentation files are stored in the `docs/` folder.
+
+Supported file types:
+
+```text
+.md
+.txt
+```
+
+Example files:
+
+```text
+docs/server_setup.md
+docs/backup_guide.md
+docs/deployment.md
+docs/monitoring.md
+docs/network_config.md
+```
+
+---
+
+### Rules File
+
+Location:
+
+```text
+data/rules.json
+```
+
+Example:
+
+```json
 {
-  "required_sections": ["Overview", "Prerequisites", "Setup", "Usage", "Troubleshooting"],
+  "required_sections": [
+    "Overview",
+    "Prerequisites",
+    "Setup",
+    "Usage",
+    "Troubleshooting"
+  ],
   "stale_after_days": 90,
-  "required_terms": ["nginx", "systemctl", "backup.sh"],
+  "required_terms": [
+    "nginx",
+    "systemctl",
+    "backup.sh"
+  ],
   "weights": {
     "missing_section": 30,
     "stale_doc": 25,
     "missing_term": 15
   }
 }
-metadata.json (optional)
+```
+
+---
+
+### Metadata File
+
+Location:
+
+```text
+data/metadata.json
+```
+
+Example:
+
+```json
 {
   "documents": [
     {
       "file": "server_setup.md",
-      "last_updated": "2024-01-01"
+      "last_updated": "2026-01-10",
+      "owner": "IT Operations"
     }
   ]
 }
-Output
-results.json
-[
-  {
-    "document": "server_setup.md",
-    "score": 70,
-    "issues": [
-      {
-        "type": "missing_section",
-        "details": "Troubleshooting section not found"
-      }
-    ]
-  }
-]
+```
+
+---
+
+## Output Files
+
+### JSON Output
+
+The analyzer writes structured results to:
+
+```text
+data/results.json
+```
+
+Example:
+
+```json
+{
+  "results": [
+    {
+      "document": "server_setup.md",
+      "score": 70,
+      "issues": [
+        {
+          "type": "missing_section",
+          "details": "Troubleshooting section not found"
+        }
+      ]
+    }
+  ]
+}
+```
+
+---
+
+### Text Report
+
+The analyzer also writes a readable report to:
+
+```text
 report.txt
-File: server_setup.md
+```
+
+Example:
+
+```text
+Documentation Quality Analyzer Report
+==================================================
+
+Document: server_setup.md
 Score: 70
-
 Issues:
-- Missing Section: Troubleshooting section not found
-Scoring System
-Issue Type	Penalty
-Missing Section	30
-Missing Term	15
-Stale Document	25
+- missing_section: Troubleshooting section not found
+```
 
-Scores never drop below 0.
+---
 
-Error Handling & Validation
+## Running Tests
 
-The analyzer includes robust validation and error handling:
+Run all tests with:
 
-Validates rules.json before processing
-Ensures correct data types and required fields
-Handles missing or invalid files gracefully
-Provides clear, user-friendly error messages
-File Filtering (Instructor Feedback Fix)
-Only .md and .txt files are processed
-Folders and unsupported files are skipped
-Prevents unexpected files from breaking execution
-Per-File Error Handling (Instructor Feedback Fix)
-Each document is processed independently
-If one file fails, the error is logged
-The analyzer continues processing remaining files
-
-Example:
-
-WARNING: Skipping unsupported file type: temp.log
-ERROR: Failed to analyze bad_file.md: Invalid content
-Logging
-
-Logging levels used:
-
-INFO → Processing steps
-WARNING → Missing sections/terms or skipped files
-ERROR → Failures
-
-Example:
-
-INFO: Analyzing document: server_setup.md
-WARNING: Missing section detected: Troubleshooting
-Running Tests
-
-Run all tests:
-
+```bash
 pytest tests/
+```
 
-Verbose mode:
+Expected result:
 
-pytest tests/ -v
-Test Coverage
+```text
+12 passed
+```
 
-Tests include:
+---
 
-DocumentationIssue class
-DocumentReport scoring
-Analyzer logic
-Section validation
-Term detection
-Edge cases (empty files)
-Missing file handling
-Project Structure
+## Project Structure
+
+```text
 Week13, 14, 15 & 16/
-├── docs/
 ├── src/
 │   ├── main.py
-│   ├── models.py
-│   └── utils.py
+│   └── models.py
 ├── tests/
 │   ├── __init__.py
 │   ├── test_analyzer.py
 │   └── test_models.py
-├── metadata.json
-├── rules.json
-├── results.json
+├── docs/
+│   ├── backup_guide.md
+│   ├── deployment.md
+│   ├── monitoring.md
+│   ├── network_config.md
+│   └── server_setup.md
+├── data/
+│   ├── input_sample.json
+│   ├── output_sample.json
+│   ├── metadata.json
+│   ├── rules.json
+│   └── results.json
+├── README.md
+├── CHECKPOINT.md
+├── AI_USAGE.md
 ├── report.txt
-├── requirements.txt
-└── README.md
-Design & Code Quality
-Modular architecture (separation of concerns)
-Object-oriented design
-Clean, readable code structure
-No hardcoded paths
-Reusable components
-AI Usage
+└── requirements.txt
+```
 
-AI tools (ChatGPT) were used to:
+---
 
-Refactor and improve code structure
-Generate and expand test cases
-Debug errors and improve validation
-Enhance documentation quality
+## Main Classes
 
-All AI-generated content was reviewed, tested, and adjusted to ensure correctness.
+### DocumentationIssue
 
-Author
+Represents a single issue found in a documentation file.
+
+### DocumentReport
+
+Stores the results for one analyzed document, including the document name, score, and list of issues.
+
+### DocumentationAnalyzer
+
+Handles the main analysis logic, including loading documents, checking sections, checking terms, checking staleness, and producing reports.
+
+---
+
+## Error Handling
+
+The analyzer includes error handling for:
+
+- Missing JSON files
+- Invalid JSON files
+- Missing documentation directory
+- Unsupported file types
+- Bad files inside the docs folder
+
+If one document fails, the program logs the error and continues processing the remaining documents.
+
+---
+
+## Logging
+
+The program logs progress and warnings during execution.
+
+Example:
+
+```text
+INFO: Starting Documentation Analyzer...
+INFO: Analyzing deployment.md
+WARNING: Missing section detected: Troubleshooting
+INFO: Analysis complete.
+```
+
+---
+
+## Limitations
+
+Current limitations include:
+
+- No HTML report generation
+- No visual dashboard
+- Basic scoring logic only
+- Limited file support beyond `.md` and `.txt`
+- Simple keyword and header matching
+
+---
+
+## Author
 
 Tanya Logan
-Cybersecurity Programming Capstone Project
+
+CVNP2646 Coursework Project
+
+Documentation Quality Analyzer
