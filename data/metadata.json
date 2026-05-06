@@ -1,0 +1,29 @@
+{
+  "documents": [
+    {
+      "file": "server_setup.md",
+      "last_updated": "2025-01-10",
+      "owner": "IT Operations"
+    },
+    {
+      "file": "backup_guide.md",
+      "last_updated": "2026-04-01",
+      "owner": "DevOps Team"
+    },
+    {
+      "file": "deployment.md",
+      "last_updated": "2025-02-15",
+      "owner": "Release Team"
+    },
+    {
+      "file": "monitoring.md",
+      "last_updated": "2026-03-20",
+      "owner": "Operations"
+    },
+    {
+      "file": "network_config.md",
+      "last_updated": "2025-01-01",
+      "owner": "Infrastructure"
+    }
+  ]
+}
